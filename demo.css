@@ -1,0 +1,13 @@
+body.demo{--ac:var(--dc);background:#fff}
+.ribbon{background:#1c2430;color:#fff;font-size:13px;text-align:center;padding:8px 12px}.ribbon a{color:#ffd9a0}
+.dtop{border-bottom:1px solid var(--line);background:#fff}
+.dlogo{font-size:19px}
+.dhero{background:linear-gradient(135deg,var(--dc),color-mix(in srgb,var(--dc) 55%,#000));color:#fff;padding:70px 0}
+.dhero .eyebrow{color:rgba(255,255,255,.8)}.dhero h1{max-width:20ch}
+.dbtn{display:inline-block;background:#fff;color:var(--dc);font-weight:700;padding:12px 22px;border-radius:999px;text-decoration:none}
+#contact .dbtn{background:var(--dc);color:#fff}
+.plist{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.plist li{display:flex;justify-content:space-between;gap:12px;border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fff}
+.plist strong{color:var(--dc);white-space:nowrap}
+.whys{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.why{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px}.why h3{color:var(--dc)}.why p{margin:0;color:var(--mut)}
