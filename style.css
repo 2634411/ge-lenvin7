@@ -64,10 +64,10 @@ ul.opts .price{font-weight:700;white-space:nowrap;color:var(--ink)}
 .card.sel .sum{display:flex}
 .sum .tot{font-size:22px}
 .order{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 0}
-.demos{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+.demos{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
 .demo-card{display:flex;flex-direction:column;gap:8px;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:24px;text-decoration:none;color:var(--ink);box-shadow:var(--sh);transition:.15s}
 .demo-card:hover{border-color:var(--ac);transform:translateY(-2px)}
-.demo-card .ic{font-size:36px;line-height:1}.demo-card .go{color:var(--ac);font-weight:700;font-size:14px}
+.demo-card .dd{color:var(--mut);font-size:14px;flex:1}.demo-card .go{color:var(--ac);font-weight:700;font-size:14px}
 .two{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:start}
 .ticks{list-style:none;margin:0;padding:0;display:grid;gap:10px}
 .ticks li{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:14px 16px 14px 46px;position:relative;color:var(--ink)}
