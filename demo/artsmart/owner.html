@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>ArtSmart Tbilisi — панель центра</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script src="runtime.js" defer></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Nunito:wght@400;600;700;800&display=swap">
+<style>
+body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#2B2220;background:#F6EFE4}
+a{color:#9E1F2A}a:hover{color:#6E131C}
+button{font-family:inherit}
+</style>
+</helmet>
+<div style="width:100%;background:#F6EFE4;color:#2B2220;font-family:'Nunito',system-ui,sans-serif;font-size:16px;line-height:1.5">
+
+<div style="background:#2B2220;color:#FBF4E8;text-align:center;padding:10px 16px;font-size:14px">Демо панели для владельцев центра. Имена, суммы и заполненность условные.</div>
+
+<header style="max-width:1200px;margin:0 auto;padding:20px 32px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px">
+<div style="font-family:'Lora',Georgia,serif;font-weight:700;font-size:26px;color:#9E1F2A">Art &amp; Smart <span style="color:#4F6B3A;font-size:17px;font-weight:600">· панель центра</span></div>
+<div style="display:flex;gap:18px;flex-wrap:wrap">
+<a href="Booking.dc.html" style="font-weight:800;text-decoration:none">Запись на сайте</a>
+<a href="Main.dc.html" style="font-weight:800;text-decoration:none">Главная</a>
+</div>
+</header>
+
+<main style="max-width:1200px;margin:0 auto;padding:8px 32px 72px">
+<h1 style="font-family:'Lora',Georgia,serif;font-size:38px;line-height:1.15;margin:0 0 6px">Записи приходят сами</h1>
+<p style="margin:0 0 24px;color:#4A3C37;max-width:720px">Клиент выбирает время и платит на сайте. Место в группе занимается автоматически, а вы получаете запись в панель и сообщение в Telegram.</p>
+
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-bottom:28px">
+<div style="background:#FFFFFF;border-radius:20px;padding:20px;border:2px solid #EADCC8"><div style="font-size:14px;color:#6B5A53;font-weight:700">Записей в списке</div><div style="font-family:'Lora',Georgia,serif;font-size:38px;font-weight:700">{{ kTotal }}</div></div>
+<div style="background:#FFFFFF;border-radius:20px;padding:20px;border:2px solid #EADCC8"><div style="font-size:14px;color:#6B5A53;font-weight:700">Оплачено онлайн</div><div style="font-family:'Lora',Georgia,serif;font-size:38px;font-weight:700">{{ kMoney }}</div></div>
+<div style="background:#FFFFFF;border-radius:20px;padding:20px;border:2px solid #EADCC8"><div style="font-size:14px;color:#6B5A53;font-weight:700">Свободных мест в субботу</div><div style="font-family:'Lora',Georgia,serif;font-size:38px;font-weight:700">{{ kFree }}</div></div>
+</div>
+
+<div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start">
+
+<section style="flex:1 1 620px;min-width:0;background:#FFFFFF;border:2px solid #EADCC8;border-radius:28px;padding:24px;display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between">
+<h2 style="font-family:'Lora',Georgia,serif;font-size:26px;margin:0">Записи</h2>
+<button type="button" onClick="{{ simulate }}" disabled="{{ simDisabled }}" style="{{ simStyle }}">{{ simLabel }}</button>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:8px">
+<sc-for list="{{ filters }}" as="f" hint-placeholder-count="4">
+<button type="button" onClick="{{ f.pick }}" style="{{ f.style }}">{{ f.label }}</button>
+</sc-for>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<sc-for list="{{ rows }}" as="r" hint-placeholder-count="4">
+<div style="{{ r.style }}">
+<div style="min-width:130px"><div style="font-weight:800">{{ r.when }}</div><div style="font-size:13px;color:#6B5A53">{{ r.fresh }}</div></div>
+<div style="flex:1 1 180px;min-width:0"><div style="font-weight:800">{{ r.cls }}</div><div style="font-size:14px;color:#4A3C37">{{ r.who }}</div></div>
+<span style="{{ r.chipStyle }}">{{ r.chip }}</span>
+<div style="min-width:150px;text-align:right">
+<sc-if value="{{ r.isConfirmed }}" hint-placeholder-val="{{ true }}">
+<span style="font-weight:800;color:#3E5A2D;font-size:14px">✓ {{ r.confirmText }}</span>
+</sc-if>
+<sc-if value="{{ r.isPending }}" hint-placeholder-val="{{ false }}">
+<button type="button" onClick="{{ r.confirm }}" style="background:#2B2220;color:#FFFFFF;font-weight:800;border:none;border-radius:999px;padding:8px 16px;cursor:pointer;min-height:38px">Подтвердить</button>
+</sc-if>
+</div>
+</div>
+</sc-for>
+</div>
+</section>
+
+<div style="flex:1 1 380px;min-width:300px;display:flex;flex-direction:column;gap:24px">
+
+<section style="background:#FFFFFF;border:2px solid #EADCC8;border-radius:28px;padding:24px;display:flex;flex-direction:column;gap:14px">
+<h2 style="font-family:'Lora',Georgia,serif;font-size:24px;margin:0">Что придёт в Telegram</h2>
+<div style="background:#E9EFF5;border-radius:20px;padding:16px;min-height:120px">
+<div style="background:#FFFFFF;border-radius:16px 16px 16px 4px;padding:14px 16px;max-width:92%;box-shadow:0 1px 0 rgba(0,0,0,0.08)">
+<div style="font-weight:800;color:#2A6F97;font-size:14px">Бот ArtSmart</div>
+<div style="white-space:pre-line;font-size:15px">{{ tgText }}</div>
+</div>
+</div>
+<div style="font-size:13px;color:#6B5A53">Уведомление также можно дублировать на почту и в Google Календарь [опция].</div>
+</section>
+
+<section style="background:#FFFFFF;border:2px solid #EADCC8;border-radius:28px;padding:24px;display:flex;flex-direction:column;gap:14px">
+<h2 style="font-family:'Lora',Georgia,serif;font-size:24px;margin:0">Автоматика</h2>
+<sc-for list="{{ toggles }}" as="t" hint-placeholder-count="4">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:14px">
+<div style="flex:1;min-width:0"><div style="font-weight:800">{{ t.title }}</div><div style="font-size:14px;color:#6B5A53">{{ t.text }}</div></div>
+<button type="button" role="switch" aria-checked="{{ t.on }}" aria-label="{{ t.title }}" onClick="{{ t.flip }}" style="{{ t.style }}"><span style="{{ t.knob }}"></span></button>
+</div>
+</sc-for>
+</section>
+
+<section style="background:#FFFFFF;border:2px solid #EADCC8;border-radius:28px;padding:24px;display:flex;flex-direction:column;gap:14px">
+<h2 style="font-family:'Lora',Georgia,serif;font-size:24px;margin:0">Заполненность в субботу, 21 ноября</h2>
+<sc-for list="{{ caps }}" as="c" hint-placeholder-count="4">
+<div>
+<div style="display:flex;justify-content:space-between;font-weight:700;font-size:15px;margin-bottom:6px"><span>{{ c.name }}</span><span>{{ c.count }}</span></div>
+<div style="height:12px;background:#EADCC8;border-radius:999px;overflow:hidden"><div style="{{ c.bar }}"></div></div>
+</div>
+</sc-for>
+</section>
+
+</div>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1250}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      filter: 'all', auto: true, tg: true, remind: true, wait: false, nextQ: 0,
+      list: [
+        { id: 1, when: 'Сб 21.11 · 10:30', cls: 'Вокал', who: 'Ребёнок 7 лет · абонемент', type: 'sub', amount: 0, key: 'voc', confirmed: true, fresh: 'сегодня, 09:12' },
+        { id: 2, when: 'Сб 21.11 · 11:30', cls: 'Актёрское мастерство', who: 'Ребёнок 4 года · первый визит', type: 'trial', amount: 0, key: 'act', confirmed: true, fresh: 'сегодня, 10:40' },
+        { id: 3, when: 'Ср 25.11 · 17:30', cls: 'Игровая хореография', who: 'Ребёнок 3 года', type: 'paid', amount: 35, key: 'dance', confirmed: true, fresh: 'вчера, 21:05' }
+      ]
+    };
+  }
+  renderVals() {
+    const s = this.state;
+    const queue = [
+      { when: 'Сб 21.11 · 16:00', cls: 'Сладкий мастер-класс', who: 'Ребёнок 5 лет', type: 'paid', amount: 35, key: 'mk' },
+      { when: 'Сб 21.11 · 12:30', cls: 'Рисование', who: 'Ребёнок 6 лет · абонемент', type: 'sub', amount: 0, key: 'draw' },
+      { when: 'Сб 21.11 · 12:30', cls: 'Рисование', who: 'Ребёнок 4 года · пакет на 50 занятий', type: 'paid', amount: 1250, key: 'draw' },
+      { when: 'Сб 21.11 · 10:30', cls: 'Вокал', who: 'Ребёнок 8 лет · первый визит', type: 'trial', amount: 0, key: 'voc' }
+    ];
+    const typeLabel = { sub: 'По абонементу', trial: 'Пробное', paid: 'Оплачено' };
+    const typeBg = { sub: '#CFE0BF', trial: '#F2B544', paid: '#F4D9C6' };
+    const capsBase = [
+      { key: 'voc', name: '10:30 · Вокал', cap: 6, base: 2 },
+      { key: 'act', name: '11:30 · Актёрское мастерство', cap: 6, base: 3 },
+      { key: 'draw', name: '12:30 · Рисование', cap: 6, base: 1 },
+      { key: 'mk', name: '16:00 · Мастер-класс', cap: 12, base: 6 }
+    ];
+    const counts = {};
+    s.list.forEach((b) => { counts[b.key] = (counts[b.key] || 0) + 1; });
+    let free = 0;
+    const caps = capsBase.map((c) => {
+      const used = Math.min(c.cap, c.base + (counts[c.key] || 0) - (c.key === 'dance' ? 0 : 0));
+      free += c.cap - used;
+      const pct = Math.round((used / c.cap) * 100);
+      return { name: c.name, count: used + ' из ' + c.cap, bar: 'height:100%;border-radius:999px;width:' + pct + '%;background:' + (pct >= 100 ? '#8A2B33' : '#4F6B3A') + ';' };
+    });
+    const money = s.list.reduce((a, b) => a + b.amount, 0);
+    const shown = s.list.filter((b) => s.filter === 'all' || b.type === s.filter);
+    const last = s.list[0];
+    const tgText = s.tg
+      ? 'Новая запись\n' + last.when + ' · ' + last.cls + '\n' + last.who + '\n' + (last.type === 'paid' ? 'Оплачено: ' + last.amount + ' лари' : (last.type === 'sub' ? 'Списано с абонемента' : 'Пробное занятие')) + '\n' + (last.confirmed ? 'Статус: подтверждено автоматически' : 'Статус: ждёт вашего подтверждения')
+      : 'Уведомления в Telegram выключены. Записи видны только в панели.';
+    const pill = (on) => 'font:inherit;font-weight:800;font-size:15px;border-radius:999px;padding:8px 18px;cursor:pointer;min-height:40px;' + (on ? 'background:#2B2220;color:#FFFFFF;border:2px solid #2B2220;' : 'background:#FFFFFF;color:#2B2220;border:2px solid #D9C9B4;');
+    const sw = (on) => 'position:relative;flex:0 0 auto;width:56px;height:32px;border-radius:999px;border:none;cursor:pointer;padding:0;background:' + (on ? '#4F6B3A' : '#B9AA98') + ';';
+    const knob = (on) => 'position:absolute;top:4px;width:24px;height:24px;border-radius:50%;background:#FFFFFF;left:' + (on ? '28px' : '4px') + ';';
+    const flip = (k) => () => { const o = {}; o[k] = !s[k]; this.setState(o); };
+    const queueLeft = s.nextQ < queue.length;
+    return {
+      kTotal: String(s.list.length),
+      kMoney: money + ' лари',
+      kFree: String(free),
+      filters: [['all', 'Все'], ['trial', 'Пробные'], ['paid', 'Оплачено'], ['sub', 'По абонементу']].map((f) => ({ label: f[1], style: pill(s.filter === f[0]), pick: () => this.setState({ filter: f[0] }) })),
+      rows: shown.map((b) => ({
+        when: b.when, cls: b.cls, who: b.who, fresh: b.fresh,
+        chip: typeLabel[b.type] + (b.type === 'paid' ? ' · ' + b.amount : ''),
+        chipStyle: 'background:' + typeBg[b.type] + ';color:#2B2220;font-weight:800;font-size:13px;border-radius:999px;padding:5px 12px;white-space:nowrap;',
+        isConfirmed: b.confirmed, isPending: !b.confirmed,
+        confirmText: b.auto ? 'Подтверждено автоматически' : 'Подтверждено',
+        confirm: () => this.setState({ list: s.list.map((x) => x.id === b.id ? Object.assign({}, x, { confirmed: true }) : x) }),
+        style: 'display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:14px 16px;border-radius:18px;background:' + (b.id > 3 ? '#FFF6E0' : '#FBF4E8') + ';border:2px solid ' + (b.id > 3 ? '#F2B544' : '#EFE3D0') + ';'
+      })),
+      simulate: () => {
+        if (!queueLeft) return;
+        const q = queue[s.nextQ];
+        const item = Object.assign({}, q, { id: 4 + s.nextQ, confirmed: s.auto, auto: s.auto, fresh: 'только что' });
+        this.setState({ list: [item].concat(s.list), nextQ: s.nextQ + 1 });
+      },
+      simDisabled: !queueLeft,
+      simLabel: queueLeft ? 'Показать новую запись с сайта' : 'Все демо-записи показаны',
+      simStyle: 'font:inherit;font-weight:800;font-size:15px;border:none;border-radius:999px;padding:11px 22px;min-height:44px;' + (queueLeft ? 'background:#9E1F2A;color:#FFFFFF;cursor:pointer;' : 'background:#D9C9B4;color:#6B5A53;cursor:not-allowed;'),
+      tgText: tgText,
+      toggles: [
+        { k: 'auto', title: 'Автоподтверждение записей', text: 'Место занимается сразу, без вашего ответа' },
+        { k: 'tg', title: 'Уведомления в Telegram', text: 'Сообщение о каждой записи и оплате' },
+        { k: 'remind', title: 'Напоминание клиенту за 2 часа', text: 'WhatsApp или Telegram, снижает пропуски' },
+        { k: 'wait', title: 'Лист ожидания', text: 'Если мест нет, клиент встаёт в очередь' }
+      ].map((t) => ({ title: t.title, text: t.text, on: s[t.k], style: sw(s[t.k]), knob: knob(s[t.k]), flip: flip(t.k) })),
+      caps: caps
+    };
+  }
+}
+</script>
+</body>
+</html>
