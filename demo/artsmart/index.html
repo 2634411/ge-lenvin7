@@ -20,7 +20,7 @@ button{font-family:inherit}
 </helmet>
 <div style="width:100%;background:#FBF4E8;color:#2B2220;font-family:'Nunito',system-ui,sans-serif;font-size:17px;line-height:1.55;overflow:hidden">
 
-<div style="background:#2B2220;color:#FBF4E8;text-align:center;padding:10px 16px;font-size:14px">Концепт сайта, черновик для обсуждения. Тексты, цены и афиша взяты из Instagram центра. Тёмные плашки «ФОТО» показывают, куда встанут настоящие снимки. Отмеченное [ ] нужно уточнить.</div>
+<div style="background:#2B2220;color:#FBF4E8;text-align:center;padding:10px 16px;font-size:14px">Концепт сайта, черновик для обсуждения. Тексты, цены и афиша взяты из Instagram центра. Фото взяты из Instagram центра для демонстрации. Отмеченное [ ] нужно уточнить.</div>
 
 <header style="max-width:1200px;margin:0 auto;padding:20px 32px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px">
 <div style="font-family:'Lora',Georgia,serif;font-weight:700;font-size:28px;color:#9E1F2A">Art &amp; Smart <span style="color:#4F6B3A;font-size:18px;font-weight:600">Tbilisi</span></div>
@@ -61,14 +61,7 @@ button{font-family:inherit}
 </div>
 <div style="flex:1 1 420px;min-width:0;position:relative;padding:0 20px 30px 0">
 <div style="position:relative;border-radius:220px 220px 32px 32px;overflow:hidden;background:linear-gradient(165deg,#E9B79A 0%,#C9573F 55%,#8E1F27 100%);aspect-ratio:4/5;display:flex;align-items:flex-end;justify-content:center;padding:22px;box-sizing:border-box">
-<svg viewBox="0 0 400 500" width="100%" height="100%" style="position:absolute;inset:0" aria-hidden="true" preserveAspectRatio="xMidYMid slice">
-<path d="M0 0 C60 120 90 220 70 500 L0 500z" fill="#8E1F27" opacity="0.55"/>
-<path d="M400 0 C340 120 310 220 330 500 L400 500z" fill="#8E1F27" opacity="0.55"/>
-<circle cx="200" cy="120" r="26" fill="#FFE9B8" opacity="0.9"/>
-<path d="M200 146 L200 190 M170 160 L230 160 M180 190 L220 190" stroke="#FFE9B8" stroke-width="4" stroke-linecap="round" fill="none"/>
-<rect x="60" y="360" width="280" height="140" fill="#D9A27A" opacity="0.85"/>
-</svg>
-<span style="position:relative;background:rgba(43,34,32,0.82);color:#FFFFFF;font-size:13px;font-weight:700;padding:7px 14px;border-radius:999px;text-align:center">ФОТО · главный зал: красные шторы, люстра, зелёные стены</span>
+<img src="img/hall.jpg" alt="Главный зал центра: красные шторы, люстра, паркет" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%">
 </div>
 <div style="position:absolute;top:34px;right:0;transform:rotate(7deg);background:#F2B544;color:#2B2220;font-weight:800;font-size:17px;line-height:1.2;padding:16px 18px;border-radius:50%;width:112px;height:112px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;text-align:center;box-shadow:0 6px 0 rgba(43,34,32,0.15)">3 занятия по цене 2</div>
 <a href="#events" style="position:absolute;left:-18px;bottom:0;background:#FFFFFF;color:#2B2220;text-decoration:none;border:2px solid #EADCC8;border-radius:20px;padding:14px 18px;display:flex;flex-direction:column;box-shadow:0 8px 0 rgba(43,34,32,0.08)">
@@ -123,11 +116,11 @@ button{font-family:inherit}
 <section style="background:#FFFFFF;padding:80px 0">
 <div style="max-width:1200px;margin:0 auto;padding:0 32px">
 <h2 style="font-family:'Lora',Georgia,serif;font-size:40px;margin:0 0 8px">Как у нас проходят занятия</h2>
-<p style="margin:0 0 32px;color:#4A3C37;max-width:700px">Живые кадры вместо картинок-заглушек. Здесь встанут снимки из Instagram, а детей показываем только с согласия родителей.</p>
+<p style="margin:0 0 32px;color:#4A3C37;max-width:700px">Кадры из жизни центра взяты из их Instagram. Детей на реальном сайте показываем только с согласия родителей.</p>
 <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:210px;gap:16px">
 <sc-for list="{{ gallery }}" as="g" hint-placeholder-count="6">
 <div style="{{ g.style }}">
-<span style="background:rgba(43,34,32,0.82);color:#FFFFFF;font-size:13px;font-weight:700;padding:6px 12px;border-radius:999px;line-height:1.3">{{ g.label }}</span>
+<sc-if value="{{ g.hasLabel }}" hint-placeholder-val="{{ false }}"><span style="background:rgba(43,34,32,0.82);color:#FFFFFF;font-size:13px;font-weight:700;padding:6px 12px;border-radius:999px;line-height:1.3">{{ g.label }}</span></sc-if>
 </div>
 </sc-for>
 </div>
@@ -378,12 +371,14 @@ class Component extends DCLogic {
         { text: '[Текст отзыва о пробном занятии]', who: '[Имя], мама [имя ребёнка, возраст]' }
       ],
       gallery: [
-        { label: 'ФОТО · главный зал: шторы, люстра, паркет', style: base + 'grid-column:span 2;grid-row:span 2;background:linear-gradient(160deg,#E9B79A,#B3262E);' },
-        { label: 'ФОТО · чёрная сцена и оранжевая мебель', style: base + 'background:linear-gradient(160deg,#4A4440,#1F1A18);' },
-        { label: 'ФОТО · импровизация на занятии', style: base + 'background:linear-gradient(160deg,#F2B544,#E8742A);' },
-        { label: 'ФОТО · монтаж видео: направление «Кино»', style: base + 'background:linear-gradient(160deg,#6F8B55,#3B5230);' },
-        { label: 'ФОТО · работы детей: рисование и дизайн', style: base + 'background:linear-gradient(160deg,#F4D9C6,#E7A98A);' },
-        { label: 'ФОТО · день открытых дверей (с согласия родителей)', style: base + 'grid-column:span 2;background:linear-gradient(160deg,#CFE0BF,#8FB07A);' }
+        { label: '', hasLabel: false, style: base + 'grid-column:span 2;grid-row:span 2;background:url(img/piano-girl.jpg) center 82%/cover no-repeat;' },
+        { label: '', hasLabel: false, style: base + 'background:url(img/table.jpg) center 55%/cover no-repeat;' },
+        { label: '', hasLabel: false, style: base + 'background:url(img/moment-a.jpg) center/cover no-repeat;' },
+        { label: '', hasLabel: false, style: base + 'background:url(img/moment-b.jpg) center/cover no-repeat;' },
+        { label: '', hasLabel: false, style: base + 'background:url(img/teacher.jpg) center 25%/cover no-repeat;' },
+        { label: '', hasLabel: false, style: base + 'grid-column:span 2;background:url(img/hall-wide.jpg) center 15%/cover no-repeat;' },
+        { label: '', hasLabel: false, style: base + 'background:url(img/moment-c.jpg) center/cover no-repeat;' },
+        { label: 'НУЖНО ФОТО · работы детей: рисование и дизайн', hasLabel: true, style: base + 'background:linear-gradient(160deg,#F4D9C6,#E7A98A);' }
       ],
       satPreStyle: tab(s.tab === 'satPre'),
       satSchoolStyle: tab(s.tab === 'satSchool'),
