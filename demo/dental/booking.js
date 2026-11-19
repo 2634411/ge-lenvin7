@@ -134,7 +134,7 @@ function admin(){var app=$('#app'),tab='over',flt={st:'',doc:'',cl:'',q:''},addi
   var up=bk.filter(function(b){return b.status!=='x'&&b.status!=='d'&&(b.date+b.time)>=(td+'00:00')}).sort(function(a,b){return (a.date+a.time)<(b.date+b.time)?-1:1}).slice(0,6);
   return '<div class="kpis"><div class="kpi"><b>'+today+'</b><span>'+t('kToday')+'</span></div><div class="kpi hot"><b>'+nw+'</b><span>'+t('kNew')+'</span></div><div class="kpi"><b>'+load+'%</b><span>'+t('kLoad')+'</span></div><div class="kpi"><b>'+cn+'</b><span>'+t('kCan')+'</span></div></div>'+
   '<div class="two2"><div class="pan"><h3>'+t('upc')+'</h3>'+(up.length?'<ul class="ul">'+up.map(function(b){return '<li><b>'+esc(dlong(b.date))+', '+b.time+'</b><span>'+esc(b.name)+' · '+esc(doc(b.doc).name)+'</span>'+badge(b.status)+'</li>'}).join('')+'</ul>':'<p class="sm">'+t('empty')+'</p>')+'</div>'+
-  '<div class="pan"><h3>'+t('byDoc')+'</h3>'+rows.map(function(r){return '<div class="bar"><span>'+esc(r.d.name)+'</span><i><u style="width:'+r.p+'%"></u></i><em>'+r.p+'%</em></div>'}).join('')+'</div></div>'+
+  '<div class="pan"><h3>'+t('byDoc')+'</h3>'+rows.map(function(r){return '<div class="lbar"><span>'+esc(r.d.name)+'</span><i><u style="width:'+r.p+'%"></u></i><em>'+r.p+'%</em></div>'}).join('')+'</div></div>'+
   '<p class="sm">'+t('admNote')+'</p><p><button class="btn ghost" id="rst">'+t('reset')+'</button></p>'}
  function list(){var bk=books().slice().sort(function(a,b){return (a.date+a.time)<(b.date+b.time)?-1:1}),q=flt.q.toLowerCase().replace(/\s/g,'');
   bk=bk.filter(function(b){return (!flt.st||b.status===flt.st)&&(!flt.doc||b.doc===flt.doc)&&(flt.cl===''||String(b.clinic)===flt.cl)&&(!q||(b.name+b.phone).toLowerCase().replace(/\s/g,'').indexOf(q)>=0)});
