@@ -129,3 +129,19 @@ html[lang=ka] .lead{font-size:16px}html[lang=ka] .svc li{font-size:13px}
 
 .hr,.lsw{flex:none}
 [id]{scroll-margin-top:96px}
+
+/* новый первый экран */
+.hero{background:linear-gradient(180deg,#f4fafa,#fff 85%);padding:58px 0 46px}.hero:after{display:none}
+.hg2{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.85fr);gap:30px;align-items:center}
+.hero h1{font-size:clamp(34px,5vw,62px);line-height:1.04;letter-spacing:-.02em;max-width:none;margin:0 0 14px;color:var(--navy)}html[lang=ka] .hero h1{font-size:clamp(30px,4.2vw,50px);letter-spacing:0;line-height:1.12}
+.h1b{font-size:clamp(18px,2vw,24px);color:var(--teal-d);margin:0 0 30px;font-weight:600}
+.bar1{display:flex;align-items:center;flex-wrap:wrap;background:#fff;border:1.5px solid var(--navy);border-radius:999px;padding:6px 6px 6px 24px;max-width:600px;transition:.2s}.bar1:focus-within{border-color:var(--teal);box-shadow:0 0 0 4px rgba(14,140,140,.16)}
+.bar1 input{flex:1;min-width:0;border:0;outline:0;font:inherit;font-size:16px;padding:13px 0;background:transparent;color:var(--ink)}.bar1 .sep{width:1px;height:26px;background:#cfe0e6;margin:0 16px;flex:none}.bar1 .btn{flex:none;white-space:nowrap;padding:16px 24px;font-size:16px}.bar1 .ok{flex:1 0 100%;margin:8px 14px 8px 0;color:var(--teal-d);font-size:14px}
+.fine{font-size:14px;color:var(--mut);margin:12px 0 0;max-width:600px}.fine a{color:var(--teal-d)}
+.hv{position:relative}.hv svg{display:block;width:100%;height:auto;max-height:420px}
+.chipf{position:absolute;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:13px;color:var(--ink);text-decoration:none;box-shadow:var(--sh);white-space:nowrap;transition:.2s}.chipf b{color:var(--teal-d);margin-right:4px}.chipf:hover{transform:translateY(-3px);border-color:var(--teal);box-shadow:0 10px 24px rgba(14,140,140,.2)}
+.c1{left:0;top:16%}.c2{left:2%;bottom:14%}.c3{right:0;bottom:30%}
+@keyframes tw{0%,100%{opacity:1}50%{opacity:.25}}.tw1{animation:tw 3.2s infinite}.tw2{animation:tw 4.1s .8s infinite}.tw3{animation:tw 2.6s .3s infinite}
+@media(prefers-reduced-motion:reduce){.tw1,.tw2,.tw3{animation:none}}
+@media(max-width:960px){.hg2{grid-template-columns:1fr}.hv{display:none}}
+@media(max-width:640px){.hero{padding:26px 0 26px}.hero h1{font-size:34px}html[lang=ka] .hero h1{font-size:29px}.h1b{font-size:18px;margin-bottom:20px}.bar1{border-radius:20px;padding:10px 14px;gap:0}.bar1 input{flex:1 0 100%;padding:12px 0;border-bottom:1px solid #e3edf1}.bar1 .sep{display:none}.bar1 .btn{flex:1 0 100%;margin-top:10px}.fine{font-size:13px}}
